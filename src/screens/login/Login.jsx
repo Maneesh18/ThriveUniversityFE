@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Button from 'react-bootstrap/Button';
-import {  LOGIN_CONTENT, LOGIN_CONTENT1, LOGIN_IMAGE } from "../../Constants";
+import {  LOGIN_CONTENT, LOGIN_CONTENT1 } from "../../Constants";
 import './login_styles.css';
 import { ImQuotesLeft,ImQuotesRight } from "react-icons/im";
 import axios from "axios"
 import { LocalDomain } from "../../api_labels";
 import {AiFillEye,AiFillEyeInvisible} from 'react-icons/ai';
-import BgImage from "../../components/BgImage";
+import {useNavigate } from "react-router-dom";
+
 export default function Login () {
   const [showPassword,setShowPassword]=useState("password");
  function handleLogin(e){
@@ -25,10 +25,16 @@ export default function Login () {
     setShowPassword("password")
   }
    
+  const navigate = useNavigate();
+  
+  function handleApply(event) {
+    console.log("Apply button clicked");
+    navigate('/apply',{replace:true});
+  }
     return (
       <div className="login-component">
         <div className="login-background-img">
-        <img className='bgimage-img' src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyc2l0eXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="home" />
+        <img className='login-bgimage-img' src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyc2l0eXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="home" />
           </div>
         <div className="login">
         <p className="login-top-text"><sup><ImQuotesLeft style={{height:"30px",width:"30px",position:"relative",right:"10px"}}/></sup>{LOGIN_CONTENT1}<sup><ImQuotesRight  style={{height:"30px",width:"30px",position:"relative",left:"10px"}}/></sup></p>
@@ -72,7 +78,7 @@ export default function Login () {
         </div>
         <div className="public-btn-div">
           
-        <button type="submit" className="btn btn-primary public-btn" style={{margin:"0px auto"}} >
+        <button type="submit" className="btn btn-primary public-btn" style={{margin:"0px auto"}} onClick={handleApply} >
             Apply
           </button>
         
@@ -81,6 +87,7 @@ export default function Login () {
           Track Application
           </button>
       
+
       </div>
      
      
